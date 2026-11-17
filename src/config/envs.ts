@@ -7,6 +7,11 @@ interface EnvVars {
     PRODUCTS_MICROSERVICE_PORT: number
     ORDERS_MICROSERVICE_HOST: string
     ORDERS_MICROSERVICE_PORT: number
+    CATEGORIES_MICROSERVICE_HOST: string
+    CATEGORIES_MICROSERVICE_PORT: number
+    CLIENTS_MICROSERVICE_HOST: string
+    CLIENTS_MICROSERVICE_PORT: number
+
 }
 
 // Validador de esquema
@@ -15,7 +20,9 @@ const envsSchema = joi.object<EnvVars>({
     PRODUCTS_MICROSERVICE_HOST: joi.string().required(),
     PRODUCTS_MICROSERVICE_PORT: joi.number().integer().min(1).max(65535).required(),
     ORDERS_MICROSERVICE_HOST: joi.string().required(),
-    ORDERS_MICROSERVICE_PORT: joi.number().integer().min(1).max(65535).required()
+    ORDERS_MICROSERVICE_PORT: joi.number().integer().min(1).max(65535).required(),
+    CLIENTS_MICROSERVICE_HOST: joi.string().required(),
+    CLIENTS_MICROSERVICE_PORT: joi.number().integer().min(1).max(65535).required()
 }).unknown(true);
 
 const result = envsSchema.validate(process.env, { abortEarly: false });
@@ -32,5 +39,10 @@ export const envs = {
     productsMicroservicePort: envVars.PRODUCTS_MICROSERVICE_PORT,
     ordersMicroserviceHost: envVars.ORDERS_MICROSERVICE_HOST,
     ordersMicroservicePort: envVars.ORDERS_MICROSERVICE_PORT,
+    categoriesMicroserviceHost: envVars.CATEGORIES_MICROSERVICE_HOST,
+    categoriesMicroservicePort: envVars.CATEGORIES_MICROSERVICE_PORT,
+    clientsMicroserviceHost: envVars.CLIENTS_MICROSERVICE_HOST,
+    clientsMicroservicePort: envVars.CLIENTS_MICROSERVICE_PORT,
+
 } as const;
 
